@@ -18,7 +18,26 @@ namespace WebApplication6.Controllers
         {
             _context = context;
         }
+        public List<Doctor> ListOfDoctors()
+        {
+            List<Doctor> doctors = new List<Doctor>();
+            foreach (Doctor item in _context.Doctor)
+            {
+                doctors.Add(item);
+            }
 
+            return doctors;
+        }
+        public List<Pacient> ListOfPacients()
+        {
+            List<Pacient> pacients = new List<Pacient>();
+            foreach (Pacient item in _context.Pacient)
+            {
+                pacients.Add(item);
+            }
+
+            return pacients;
+        }
         // GET: Visits
         public async Task<IActionResult> Index()
         {
@@ -48,6 +67,8 @@ namespace WebApplication6.Controllers
         // GET: Visits/Create
         public IActionResult Create()
         {
+            ViewBag.Doctors = ListOfDoctors();
+            ViewBag.Pacients = ListOfPacients();
             return View();
         }
 
@@ -79,6 +100,8 @@ namespace WebApplication6.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Doctors = ListOfDoctors();
+            ViewBag.Pacients = ListOfPacients();
             return View(visit);
         }
 
