@@ -1,5 +1,5 @@
 ﻿@model WebApplication6.Models.Pacient
-
+@using WebApplication6.Models
 @{
     ViewData["Title"] = "Create";
 }
@@ -33,14 +33,15 @@
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
-
-                <label asp-for="DoctorId" class="control-label"></label>
-                <input asp-for="DoctorId" class="form-control" />
+                <label asp-for="DoctorId" class="control-label">Select Doctor:</label>
+                <select asp-for="DoctorId" class="form-control">
+                    <option value="">Select Doctor</option>
+                    @foreach (var doctor in ViewBag.Doctors)
+                    {
+                        <option value="@doctor.Id">@doctor.Name</option>
+                    }
+                </select>
                 <span asp-validation-for="DoctorId" class="text-danger"></span>
-
-
-                @* <label asp-for="DoctorId" class="control-label"></label>
-                <select asp-for="DoctorId" class ="form-control" asp-items="ViewBag.DoctorId"></select> *@
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,16 @@ namespace WebApplication6.Controllers
         {
             _context = context;
         }
+        public List<Doctor> ListOfDoctors()
+        {
+            List<Doctor> doctors = new List<Doctor>();
+            foreach (Doctor item in _context.Doctor)
+            {
+                doctors.Add(item);
+            }
 
+            return doctors;
+        }
         // GET: Pacients
         public async Task<IActionResult> Index()
         {
@@ -48,6 +58,7 @@ namespace WebApplication6.Controllers
         // GET: Pacients/Create
         public IActionResult Create()
         {
+            ViewBag.Doctors = ListOfDoctors();
             return View();
         }
 
@@ -79,6 +90,7 @@ namespace WebApplication6.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Doctors = ListOfDoctors();
             return View(pacient);
         }
 
