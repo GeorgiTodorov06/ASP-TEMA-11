@@ -4,5 +4,37 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Quick links:</p>
+    <div>
+        <a href="/Doctors" class="btn btn-primary">Doctors</a>
+        <a href="/Pacients" class="btn btn-primary">Pacients</a>
+        <a href="/Visits" class="btn btn-primary">Visits</a>
+    </div>
+
+    <div class="card-deck mt-4">
+        <div class="card narrow-card">
+            <div class="card-body">
+                <h5 class="card-title">Active Doctors</h5>
+                <p class="card-text">@ViewData["ActiveDoctorsCount"]</p>
+            </div>
+        </div>
+        <div class="card narrow-card">
+            <div class="card-body">
+                <h5 class="card-title">Registered Patients</h5>
+                <p class="card-text">@ViewData["RegisteredPatientsCount"]</p>
+            </div>
+        </div>
+        <div class="card narrow-card">
+            <div class="card-body">
+                <h5 class="card-title">Completed Visits</h5>
+                <p class="card-text">@ViewData["CompletedVisitsCount"]</p>
+            </div>
+        </div>
+        <div class="card narrow-card">
+            <div class="card-body">
+                <h5 class="card-title">Upcoming Appointments</h5>
+                <p class="card-text">@ViewData["UpcomingAppointmentsCount"]</p>
+            </div>
+        </div>
+    </div>
 </div>
