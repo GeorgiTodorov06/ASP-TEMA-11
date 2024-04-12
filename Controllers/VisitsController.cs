@@ -79,7 +79,18 @@ namespace WebApplication6.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Date,Description,PacientId,DoctorId")] Visit visit)
         {
-            
+            foreach (Visit item in _context.Visit)
+            {
+                
+                DateTime itemEndTime = item.Date.AddHours(1);
+
+                
+                if (visit.DoctorId == item.DoctorId && visit.Date.Date == item.Date.Date && visit.Date >= item.Date && visit.Date < itemEndTime)
+                {
+                    
+                    return NotFound();
+                }
+            }
                 _context.Add(visit);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -112,6 +123,18 @@ namespace WebApplication6.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Date,Description,PacientId,DoctorId")] Visit visit)
         {
+            foreach (Visit item in _context.Visit)
+            {
+
+                DateTime itemEndTime = item.Date.AddHours(1);
+
+
+                if (visit.DoctorId == item.DoctorId && visit.Date.Date == item.Date.Date && visit.Date >= item.Date && visit.Date < itemEndTime)
+                {
+
+                    return NotFound();
+                }
+            }
             if (id != visit.Id)
             {
                 return NotFound();
